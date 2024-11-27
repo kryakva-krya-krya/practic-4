@@ -18,6 +18,7 @@ jobs:
       - name: check code
         run: npx prettier ./src/ --check
       - name: redact code
+        if: failure()
         run: npx prettier ./src/ --write
       - name: send good message
         if: success()
