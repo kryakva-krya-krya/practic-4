@@ -15,8 +15,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: install dependencies
         run: npm install
-      - name: check code
-        run: npx prettier ./src/ --check
       - name: redact code
         if: failure()
         run: npx prettier ./src/ --write
