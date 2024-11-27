@@ -19,6 +19,21 @@ jobs:
         run: npx prettier ./src/ --check
       - name: redact code
         run: npx prettier ./src/ --write
+      - name: send good message
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: -4587543996
+          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          message: Код хороший
+      - name: sand bad message
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: -4587543996
+          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          message: Гавно написал
+
   build:
      runs-on: ubuntu-latest
      needs: [ lint ]
@@ -35,20 +50,18 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push docker image
         run: docker push ghcr.io/kryakva-krya-krya/practic-4/students-node-330:latest
-  sendMessage:
-      runs-on: ubuntu-latest
-      steps:
-        - name: send good message
-          if: success()
-          uses: appleboy/telegram-action@master
-          with:
-            to: -4587543996
-            token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
-            message: Сообщение от коли(хорошее)
-        - name: sand bad message
-          if: failure()
-          uses: appleboy/telegram-action@master
-          with:
-            to: -4587543996
-            token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
-            message: Сообщение от коли(плохое)
+      - name: send good message
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: -4587543996
+          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          message: Еще изапушился
+      - name: sand bad message
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: -4587543996
+          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          message: А, нет. Все-таки гавно
+        
