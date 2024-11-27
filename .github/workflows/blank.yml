@@ -16,7 +16,6 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: redact code
-        if: failure()
         run: npx prettier ./src/ --write
       - name: send good message
         if: success()
