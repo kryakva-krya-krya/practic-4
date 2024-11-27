@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: check code
+        run: npx prettier ./src/ --check
+      - name: redact code
+        run: npx prettier ./src/ --write
+  build:
+     runs-on: ubuntu-latest
+     needs: [ lint ]
+     steps:
+      - uses: actions/checkout@v4
+
+      - name: Buid docker image
+        run: docker build -t ghcr.io/kryakva-krya-krya/practic-4/students-node-330:latest ./src/
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push docker image
+        run: docker push ghcr.io/kryakva-krya-krya/practic-4/students-node-330:latest
+  sendMessage:
+      runs-on: ubuntu-latest
+      steps:
+        - name: send good message
+          if: success()
+          uses: appleboy/telegram-action@master
+          with:
+            to: -4587543996
+            token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+            message: Сообщение от коли(хорошее)
+        - name: sand bad message
+          if: failure()
+          uses: appleboy/telegram-action@master
+          with:
+            to: -4587543996
+            token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+            message: Сообщение от коли(плохое)
