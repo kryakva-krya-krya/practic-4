@@ -54,7 +54,7 @@ jobs:
         with:
           to: -4587543996
           token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
-          message: Еще изапушился
+          message: Еще и запушился
       - name: sand bad message
         if: failure()
         uses: appleboy/telegram-action@master
