@@ -15,8 +15,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: install dependencies
         run: npm install
-      - name: redact code
-        run: npx prettier ./src/ --write
+      - name: check code
+        run: npx prettier ./src/ --check
       - name: send good message
         if: success()
         uses: appleboy/telegram-action@master
