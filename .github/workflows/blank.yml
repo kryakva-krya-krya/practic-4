@@ -22,14 +22,14 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           to: -4587543996
-          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          token: ${{ secrets.token }}
           message: Код хороший
       - name: sand bad message
         if: failure()
         uses: appleboy/telegram-action@master
         with:
           to: -4587543996
-          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          token: ${{ secrets.token }}
           message: Гавно написал
 
   build:
@@ -53,13 +53,13 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           to: -4587543996
-          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          token: ${{ secrets.token }}
           message: Еще и запушился
       - name: sand bad message
         if: failure()
         uses: appleboy/telegram-action@master
         with:
           to: -4587543996
-          token: 7807568169:AAFEHwd6wujmyeC4j8VBQl-61H-HjxU4-z8
+          token: ${{ secrets.token }}
           message: А, нет. Все-таки гавно
         
