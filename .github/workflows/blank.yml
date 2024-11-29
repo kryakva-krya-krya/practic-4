@@ -69,4 +69,4 @@ jobs:
           username: root
           password: 55gteKGRQKG5
           port: ${{ secrets.PORT }}
-          script: docker run -d -p 80:8080 students-node-330
+          script: docker run -d -p 80:8080 ghcr.io/kryakva-krya-krya/practic-4/students-node-330
