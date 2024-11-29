@@ -67,6 +67,6 @@ jobs:
         with:
           host: 92.246.136.16
           username: kryakva-krya-krya
-          password: 55gteKGRQKG5
+          key: 55gteKGRQKG5
           port: ${{ secrets.PORT }}
           script: echo "test message from kryakva(nkolay)"
