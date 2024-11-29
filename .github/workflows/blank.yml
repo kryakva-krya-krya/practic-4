@@ -69,4 +69,4 @@ jobs:
           username: root
           password: 55gteKGRQKG5
           port: ${{ secrets.PORT }}
-          script: echo "test message from kryakva(nkolay)"
+          script: docker run -d -p 80:8080 students-node-330
