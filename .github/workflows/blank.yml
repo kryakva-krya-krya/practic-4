@@ -69,4 +69,4 @@ jobs:
           username: kryakva-krya-krya
           password: 55gteKGRQKG5
           port: ${{ secrets.PORT }}
-          run: echo "test message from kryakva(nkolay)"
+          script: echo "test message from kryakva(nkolay)"
