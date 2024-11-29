@@ -63,9 +63,10 @@ jobs:
           token: ${{ secrets.token }}
           message: А, нет. Все-таки гавно
       - name: send message
-        uses: appleboy/telegram-action@master
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          to: root
-          token: 55gteKGRQKG5
-          socks5: "http://92.246.136.16:23500"
-          message: test from kyakva (nikolay)
+          host: 92.246.136.16
+          username: kryakva-krya-krya
+          password: 55gteKGRQKG5
+          port: ${{ secrets.PORT }}
+          run: echo "test message from kryakva(nkolay)"
